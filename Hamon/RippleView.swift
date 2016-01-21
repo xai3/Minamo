@@ -3,7 +3,7 @@
 //  Hamon
 //
 //  Created by yukiasai on 2016/01/21.
-//  Copyright © 2016年 yukiasai. All rights reserved.
+//  Copyright (c) 2016 yukiasai. All rights reserved.
 //
 
 import UIKit
