@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>HamonExample.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>4622B52E1C5111BF00DBE9E5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4622B5441C51160600DBE9E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
