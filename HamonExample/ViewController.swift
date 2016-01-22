@@ -20,17 +20,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         if !rippleView.appeared, let buttonItem = navigationItem.rightBarButtonItems?.first {
-            rippleView.appearAtBarButtonItem(buttonItem)
-        }
-        
-        if !rippleView.appeared {
-            rippleView.appearAtView(view)
+            rippleView.appearAtBarButtonItem(buttonItem, offset: CGPointMake(-10, 10))
         }
     }
-
 }
 

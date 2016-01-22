@@ -45,6 +45,8 @@ public class RippleView: UIView {
         }
     }
     
+    public var size: CGSize = RippleView.defaultSize
+    
     public var coreHidden: Bool {
         get { return coreLayer.hidden }
         set { coreLayer.hidden = newValue }
@@ -132,19 +134,19 @@ public class RippleView: UIView {
         startAnimation()
     }
     
-    public func appearAtView(view: UIView, size: CGSize = RippleView.defaultSize) {
-        appearInView(view.superview, point: view.center, size: size)
+    public func appearAtView(view: UIView, offset: CGPoint = CGPointZero) {
+        appearInView(view.superview, point: view.center + offset)
     }
     
-    public func appearAtBarButtonItem(buttonItem: UIBarButtonItem, size: CGSize = RippleView.defaultSize) {
+    public func appearAtBarButtonItem(buttonItem: UIBarButtonItem, offset: CGPoint = CGPointZero) {
         guard let unmanagedView = buttonItem.performSelector("view"),
             let view = unmanagedView.takeUnretainedValue() as? UIView else {
                 return
         }
-        appearAtView(view, size: size)
+        appearAtView(view, offset: offset)
     }
     
-    public func appearInView(view: UIView?, point: CGPoint, size: CGSize = RippleView.defaultSize) {
+    public func appearInView(view: UIView?, point: CGPoint) {
         bounds = CGRect(origin: CGPointZero, size: size)
         center = point
         view?.addSubview(self)
@@ -158,4 +160,8 @@ public class RippleView: UIView {
     public var appeared: Bool {
         return superview != nil
     }
+}
+
+func +(l: CGPoint, r: CGPoint) -> CGPoint {
+    return CGPointMake(l.x + r.x, l.y + r.y)
 }
