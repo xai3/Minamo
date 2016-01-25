@@ -8,9 +8,15 @@
 
 import UIKit
 
+public protocol RippleViewDelegate: class {
+    func rippleViewTapped(view: RippleView)
+}
+
 public class RippleView: UIView {
     static let defaultSize = CGSizeMake(24, 24)
     static let defaultRingWidth = CGFloat(3)
+    
+    var delegate: RippleViewDelegate?
     
     init() {
         super.init(frame: CGRectZero)
@@ -28,12 +34,25 @@ public class RippleView: UIView {
     }
     
     private func commonInit() {
-        userInteractionEnabled = false
         tintColor = nil
         
         layer.addSublayer(ringLayer)
         layer.addSublayer(coreLayer)
         addSubview(imageView)
+        
+        userInteractionEnabled = false
+    }
+    
+    override public var userInteractionEnabled: Bool {
+        get { return super.userInteractionEnabled }
+        set {
+            if newValue {
+                addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewTapped:"))
+            } else {
+                gestureRecognizers?.forEach { removeGestureRecognizer($0) }
+            }
+            super.userInteractionEnabled = newValue
+        }
     }
     
     override public var tintColor: UIColor! {
@@ -159,6 +178,12 @@ public class RippleView: UIView {
     
     public var appeared: Bool {
         return superview != nil
+    }
+}
+
+extension RippleView: UIGestureRecognizerDelegate {
+    func viewTapped(gesture: UITapGestureRecognizer) {
+        delegate?.rippleViewTapped(self)
     }
 }
 

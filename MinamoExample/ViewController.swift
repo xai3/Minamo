@@ -25,7 +25,14 @@ class ViewController: UIViewController {
         
         if !rippleView.appeared, let buttonItem = navigationItem.rightBarButtonItems?.first {
             rippleView.appearAtBarButtonItem(buttonItem, offset: CGPointMake(-10, 10))
+            rippleView.delegate = self
         }
+    }
+}
+
+extension ViewController: RippleViewDelegate {
+    func rippleViewTapped(view: RippleView) {
+//        view.disappear()
     }
 }
 
