@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  HamonExample
+//  MinamoExample
 //
 //  Created by yukiasai on 2016/01/21.
 //  Copyright (c) 2016 yukiasai. All rights reserved.

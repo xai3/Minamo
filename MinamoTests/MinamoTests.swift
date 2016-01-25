@@ -1,15 +1,15 @@
 //
-//  HamonTests.swift
-//  HamonTests
+//  MinamoTests.swift
+//  MinamoTests
 //
 //  Created by yukiasai on 2016/01/21.
 //  Copyright (c) 2016 yukiasai. All rights reserved.
 //
 
 import XCTest
-@testable import Hamon
+@testable import Minamo
 
-class HamonTests: XCTestCase {
+class MinamoTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
