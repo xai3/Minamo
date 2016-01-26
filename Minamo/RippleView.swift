@@ -16,7 +16,22 @@ public class RippleView: UIView {
     static let defaultSize = CGSizeMake(24, 24)
     static let defaultRingWidth = CGFloat(3)
     
-    var delegate: RippleViewDelegate?
+    public var delegate: RippleViewDelegate?
+    public var size: CGSize = RippleView.defaultSize
+    
+    private var coreLayer = CAShapeLayer()
+    
+    public var ringScale: Float = 2 {
+        didSet { restartAnimation() }
+    }
+    
+    public var duration: NSTimeInterval = 1.5 {
+        didSet { restartAnimation() }
+    }
+    
+    public var coreImage: UIImage? {
+        didSet { imageView.image = coreImage }
+    }
     
     init() {
         super.init(frame: CGRectZero)
@@ -43,6 +58,30 @@ public class RippleView: UIView {
         userInteractionEnabled = false
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        coreLayer.frame = bounds
+        coreLayer.path = UIBezierPath(ovalInRect: bounds).CGPath
+        ringLayer.frame = bounds
+        ringLayer.path = UIBezierPath(ovalInRect: bounds).CGPath
+        imageView.frame = bounds
+    }
+    
+    private lazy var ringLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.lineWidth = RippleView.defaultRingWidth
+        layer.fillColor = UIColor.clearColor().CGColor
+        return layer
+    }()
+    
+    public lazy var imageView: UIImageView = {
+        let imageView = UIImageView(frame: self.bounds)
+        imageView.contentMode = .Center
+        return imageView
+    }()
+}
+
+public extension RippleView {
     override public var userInteractionEnabled: Bool {
         get { return super.userInteractionEnabled }
         set {
@@ -64,8 +103,6 @@ public class RippleView: UIView {
         }
     }
     
-    public var size: CGSize = RippleView.defaultSize
-    
     public var coreHidden: Bool {
         get { return coreLayer.hidden }
         set { coreLayer.hidden = newValue }
@@ -80,43 +117,11 @@ public class RippleView: UIView {
         get { return ringLayer.lineWidth }
         set { ringLayer.lineWidth = newValue }
     }
-    
-    public var ringScale: Float = 2 {
-        didSet { restartAnimation() }
-    }
-    
-    public var duration: NSTimeInterval = 1.5 {
-        didSet { restartAnimation() }
-    }
-    
-    public var coreImage: UIImage? {
-        didSet { imageView.image = coreImage }
-    }
-    
-    private var coreLayer = CAShapeLayer()
-    
-    private lazy var ringLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.lineWidth = RippleView.defaultRingWidth
-        layer.fillColor = UIColor.clearColor().CGColor
-        return layer
-    }()
-    
-    public lazy var imageView: UIImageView = {
-        let imageView = UIImageView(frame: self.bounds)
-        imageView.contentMode = .Center
-        return imageView
-    }()
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        coreLayer.frame = bounds
-        coreLayer.path = UIBezierPath(ovalInRect: bounds).CGPath
-        ringLayer.frame = bounds
-        ringLayer.path = UIBezierPath(ovalInRect: bounds).CGPath
-        imageView.frame = bounds
-    }
-    
+}
+
+// MARK: Animation
+
+public extension RippleView {
     public func startAnimation() {
         ringLayer.removeAllAnimations()
         
@@ -152,7 +157,11 @@ public class RippleView: UIView {
         }
         startAnimation()
     }
-    
+}
+
+// MARK: Appear and Disappear
+
+public extension RippleView {
     public func appearAtView(view: UIView, offset: CGPoint = CGPointZero) {
         appearInView(view.superview, point: view.center + offset)
     }
