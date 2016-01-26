@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     let rippleView = { Void -> RippleView in
         let view = RippleView()
+        view.tintColor = UIColor(red: 0.3, green: 0.7, blue: 1, alpha: 1)
         view.coreImage = UIImage(named: "q")
         return view
     }()
