@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version = '0.1'
   s.license = 'MIT'
   s.homepage = 'https://github.com/yukiasai/'
-  s.summary = 'Table view datasource and delegate library in Swift'
+  s.summary = 'Simple coach mark library written in Swift'
   s.authors = { 'yukiasai' => 'yukiasai@gmail.com' }
   s.source = { :git => 'https://github.com/yukiasai/Minamo.git', :tag => s.version }
 
