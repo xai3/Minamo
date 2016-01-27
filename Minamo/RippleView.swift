@@ -32,7 +32,13 @@ public class RippleView: UIView {
     public var coreImage: UIImage? {
         didSet { imageView.image = coreImage }
     }
-    
+
+    convenience init(image: UIImage?, tintColor: UIColor = UIColor(red: 0.3, green: 0.7, blue: 1, alpha: 1)) {
+        self.init()
+        imageView.image = image
+        self.tintColor = tintColor
+    }
+
     init() {
         super.init(frame: CGRectZero)
         commonInit()
