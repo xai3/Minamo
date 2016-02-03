@@ -18,6 +18,7 @@ public class RippleView: UIView {
     
     public var delegate: RippleViewDelegate?
     public var size: CGSize = RippleView.defaultSize
+    public var contentInset: CGFloat = 0
     
     private var coreLayer = CAShapeLayer()
     
@@ -60,11 +61,15 @@ public class RippleView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        coreLayer.frame = bounds
-        coreLayer.path = UIBezierPath(ovalInRect: bounds).CGPath
-        ringLayer.frame = bounds
-        ringLayer.path = UIBezierPath(ovalInRect: bounds).CGPath
-        imageView.frame = bounds
+        coreLayer.frame = contentFrame
+        coreLayer.path = UIBezierPath(ovalInRect: coreLayer.bounds).CGPath
+        ringLayer.frame = contentFrame
+        ringLayer.path = UIBezierPath(ovalInRect: ringLayer.bounds).CGPath
+        imageView.frame = contentFrame
+    }
+    
+    private var contentFrame: CGRect {
+        return CGRectMake(contentInset, contentInset, bounds.width - contentInset * 2, bounds.height - contentInset * 2)
     }
     
     private lazy var ringLayer: CAShapeLayer = {
@@ -75,7 +80,7 @@ public class RippleView: UIView {
     }()
     
     public lazy var imageView: UIImageView = {
-        let imageView = UIImageView(frame: self.bounds)
+        let imageView = UIImageView(frame: self.contentFrame)
         imageView.contentMode = .Center
         return imageView
     }()
