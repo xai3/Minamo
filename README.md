@@ -48,6 +48,7 @@ rippleView.disappear()
 * ringScale
 * ringWidth
 * ringHidden
+* contentInset
 
 ## Installation
 
