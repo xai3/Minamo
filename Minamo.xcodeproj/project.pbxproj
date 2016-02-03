@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4622B5301C5111BF00DBE9E5 /* Minamo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4622B5251C5111BF00DBE9E5 /* Minamo.framework */; };
-		46C6CDCF1C55BD4600FB146D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46C6CDCC1C55BD4600FB146D /* Info.plist */; };
+		46763FBB1C620107003F0E2C /* Minamo.h in Headers */ = {isa = PBXBuildFile; fileRef = 46763FBA1C620027003F0E2C /* Minamo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		46C6CDD01C55BD4600FB146D /* RippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C6CDCD1C55BD4600FB146D /* RippleView.swift */; };
 		46C6CDDA1C55BD5100FB146D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C6CDD21C55BD5100FB146D /* AppDelegate.swift */; };
 		46C6CDDB1C55BD5100FB146D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46C6CDD31C55BD5100FB146D /* Assets.xcassets */; };
@@ -35,6 +35,7 @@
 		4622B5251C5111BF00DBE9E5 /* Minamo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Minamo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4622B52F1C5111BF00DBE9E5 /* Minamo.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Minamo.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4622B5451C51160600DBE9E5 /* Minamo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minamo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46763FBA1C620027003F0E2C /* Minamo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Minamo.h; sourceTree = "<group>"; };
 		46C6CDCC1C55BD4600FB146D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46C6CDCD1C55BD4600FB146D /* RippleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RippleView.swift; sourceTree = "<group>"; };
 		46C6CDD21C55BD5100FB146D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		46C6CDCA1C55BD4600FB146D /* Minamo */ = {
 			isa = PBXGroup;
 			children = (
+				46763FBA1C620027003F0E2C /* Minamo.h */,
 				46C6CDCD1C55BD4600FB146D /* RippleView.swift */,
 				46C6CDCC1C55BD4600FB146D /* Info.plist */,
 			);
@@ -131,6 +133,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46763FBB1C620107003F0E2C /* Minamo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +239,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46C6CDCF1C55BD4600FB146D /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
