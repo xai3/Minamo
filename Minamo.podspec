@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Minamo'
-  s.version = '0.1.1'
+  s.version = '0.1.2'
   s.license = 'MIT'
   s.homepage = 'https://github.com/yukiasai/'
   s.summary = 'Simple coach mark library written in Swift'
@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
   
-  s.source_files = 'Minamo/*.swift'
+  s.source_files = 'Minamo/*.{h,swift}'
 end
 
