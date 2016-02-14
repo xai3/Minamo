@@ -52,7 +52,7 @@ rippleView.disappear()
 
 ## Installation
 
-#### Cocoapods
+#### CocoaPods
 
 ```
 pod 'Minamo'
