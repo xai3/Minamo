@@ -14,10 +14,8 @@
 		46C6CDDB1C55BD5100FB146D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46C6CDD31C55BD5100FB146D /* Assets.xcassets */; };
 		46C6CDDC1C55BD5100FB146D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46C6CDD41C55BD5100FB146D /* LaunchScreen.storyboard */; };
 		46C6CDDD1C55BD5100FB146D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46C6CDD61C55BD5100FB146D /* Main.storyboard */; };
-		46C6CDDE1C55BD5100FB146D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46C6CDD81C55BD5100FB146D /* Info.plist */; };
 		46C6CDDF1C55BD5100FB146D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C6CDD91C55BD5100FB146D /* ViewController.swift */; };
 		46C6CDE31C55BD6200FB146D /* MinamoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C6CDE11C55BD6200FB146D /* MinamoTests.swift */; };
-		46C6CDE41C55BD6200FB146D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46C6CDE21C55BD6200FB146D /* Info.plist */; };
 		46C6CDE51C55BD6800FB146D /* RippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C6CDCD1C55BD4600FB146D /* RippleView.swift */; };
 /* End PBXBuildFile section */
 
@@ -200,7 +198,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = yukiasai;
 				TargetAttributes = {
 					4622B5241C5111BF00DBE9E5 = {
@@ -246,7 +244,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46C6CDE41C55BD6200FB146D /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +251,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46C6CDDE1C55BD5100FB146D /* Info.plist in Resources */,
 				46C6CDDD1C55BD5100FB146D /* Main.storyboard in Resources */,
 				46C6CDDB1C55BD5100FB146D /* Assets.xcassets in Resources */,
 				46C6CDDC1C55BD5100FB146D /* LaunchScreen.storyboard in Resources */,
