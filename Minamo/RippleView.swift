@@ -91,7 +91,7 @@ public extension RippleView {
         get { return super.userInteractionEnabled }
         set {
             if newValue {
-                addGestureRecognizer(UITapGestureRecognizer(target: self, action: "viewTapped:"))
+                addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RippleView.viewTapped(_:))))
             } else {
                 gestureRecognizers?.forEach { removeGestureRecognizer($0) }
             }
@@ -172,7 +172,7 @@ public extension RippleView {
     }
     
     public func appearAtBarButtonItem(buttonItem: UIBarButtonItem, offset: CGPoint = CGPointZero) {
-        guard let unmanagedView = buttonItem.performSelector("view"),
+        guard let unmanagedView = buttonItem.performSelector(Selector("view")),
             let view = unmanagedView.takeUnretainedValue() as? UIView else {
                 return
         }
