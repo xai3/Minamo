@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Minamo'
-  s.version = '0.1.3'
+  s.version = '0.1.4'
   s.license = 'MIT'
   s.homepage = 'https://github.com/yukiasai/'
   s.summary = 'Simple coach mark library written in Swift'
