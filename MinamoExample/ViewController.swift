@@ -21,19 +21,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if !rippleView.appeared, let buttonItem = navigationItem.rightBarButtonItems?.first {
-            rippleView.appearAtBarButtonItem(buttonItem, offset: CGPointMake(-10, 10))
+            rippleView.appearAtBarButtonItem(buttonItem, offset: CGPoint(x: -10, y: 10))
             rippleView.delegate = self
+            rippleView.isUserInteractionEnabled = true
         }
     }
 }
 
 extension ViewController: RippleViewDelegate {
-    func rippleViewTapped(view: RippleView) {
-//        view.disappear()
+    func rippleViewTapped(_ view: RippleView) {
+        view.disappear()
     }
 }
 

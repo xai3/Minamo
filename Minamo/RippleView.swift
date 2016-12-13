@@ -9,33 +9,33 @@
 import UIKit
 
 public protocol RippleViewDelegate: class {
-    func rippleViewTapped(view: RippleView)
+    func rippleViewTapped(_ view: RippleView)
 }
 
-public class RippleView: UIView {
-    static let defaultSize = CGSizeMake(24, 24)
+open class RippleView: UIView {
+    static let defaultSize = CGSize(width: 24, height: 24)
     static let defaultRingWidth = CGFloat(3)
     
-    public var delegate: RippleViewDelegate?
-    public var size: CGSize = RippleView.defaultSize
-    public var contentInset: CGFloat = 0
+    open var delegate: RippleViewDelegate?
+    open var size: CGSize = RippleView.defaultSize
+    open var contentInset: CGFloat = 0
     
-    private var coreLayer = CAShapeLayer()
+    fileprivate var coreLayer = CAShapeLayer()
     
-    public var ringScale: Float = 2 {
+    open var ringScale: Float = 2 {
         didSet { restartAnimation() }
     }
     
-    public var duration: NSTimeInterval = 1.5 {
+    open var duration: TimeInterval = 1.5 {
         didSet { restartAnimation() }
     }
     
-    public var coreImage: UIImage? {
+    open var coreImage: UIImage? {
         didSet { imageView.image = coreImage }
     }
     
     init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         commonInit()
     }
     
@@ -49,73 +49,73 @@ public class RippleView: UIView {
         commonInit()
     }
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         tintColor = nil
         
         layer.addSublayer(ringLayer)
         layer.addSublayer(coreLayer)
         addSubview(imageView)
         
-        userInteractionEnabled = false
+        isUserInteractionEnabled = false
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         coreLayer.frame = contentFrame
-        coreLayer.path = UIBezierPath(ovalInRect: coreLayer.bounds).CGPath
+        coreLayer.path = UIBezierPath(ovalIn: coreLayer.bounds).cgPath
         ringLayer.frame = contentFrame
-        ringLayer.path = UIBezierPath(ovalInRect: ringLayer.bounds).CGPath
+        ringLayer.path = UIBezierPath(ovalIn: ringLayer.bounds).cgPath
         imageView.frame = contentFrame
     }
     
-    private var contentFrame: CGRect {
-        return CGRectMake(contentInset, contentInset, bounds.width - contentInset * 2, bounds.height - contentInset * 2)
+    fileprivate var contentFrame: CGRect {
+        return CGRect(x: contentInset, y: contentInset, width: bounds.width - contentInset * 2, height: bounds.height - contentInset * 2)
     }
     
-    private lazy var ringLayer: CAShapeLayer = {
+    fileprivate lazy var ringLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.lineWidth = RippleView.defaultRingWidth
-        layer.fillColor = UIColor.clearColor().CGColor
+        layer.fillColor = UIColor.clear.cgColor
         return layer
     }()
     
-    public lazy var imageView: UIImageView = {
+    open lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: self.contentFrame)
-        imageView.contentMode = .Center
+        imageView.contentMode = .center
         return imageView
     }()
 }
 
-public extension RippleView {
-    override public var userInteractionEnabled: Bool {
-        get { return super.userInteractionEnabled }
+extension RippleView {
+    override open var isUserInteractionEnabled: Bool {
+        get { return super.isUserInteractionEnabled }
         set {
             if newValue {
                 addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RippleView.viewTapped(_:))))
             } else {
                 gestureRecognizers?.forEach { removeGestureRecognizer($0) }
             }
-            super.userInteractionEnabled = newValue
+            super.isUserInteractionEnabled = newValue
         }
     }
     
-    override public var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         get { return super.tintColor }
         set {
-            super.tintColor = newValue ?? UIApplication.sharedApplication().keyWindow?.tintColor
-            coreLayer.fillColor = tintColor.CGColor
-            ringLayer.strokeColor = tintColor.CGColor
+            super.tintColor = newValue ?? UIApplication.shared.keyWindow?.tintColor
+            coreLayer.fillColor = tintColor.cgColor
+            ringLayer.strokeColor = tintColor.cgColor
         }
     }
     
     public var coreHidden: Bool {
-        get { return coreLayer.hidden }
-        set { coreLayer.hidden = newValue }
+        get { return coreLayer.isHidden }
+        set { coreLayer.isHidden = newValue }
     }
     
     public var ringHidden: Bool {
-        get { return ringLayer.hidden }
-        set { ringLayer.hidden = newValue }
+        get { return ringLayer.isHidden }
+        set { ringLayer.isHidden = newValue }
     }
     
     public var ringWidth: CGFloat {
@@ -133,8 +133,8 @@ public extension RippleView {
         let scaleAnimation = { Void -> CAAnimation in
             let animation = CABasicAnimation(keyPath: "transform.scale")
             animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-            animation.fromValue = NSNumber(float: 1)
-            animation.toValue = NSNumber(float: ringScale)
+            animation.fromValue = NSNumber(value: 1 as Float)
+            animation.toValue = NSNumber(value: ringScale as Float)
             animation.duration = duration
             return animation
         }()
@@ -142,8 +142,8 @@ public extension RippleView {
         let opacityAnimation = { Void -> CAAnimation in
             let animation = CABasicAnimation(keyPath: "opacity")
             animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-            animation.fromValue = NSNumber(float: 1)
-            animation.toValue = NSNumber(float: 0)
+            animation.fromValue = NSNumber(value: 1 as Float)
+            animation.toValue = NSNumber(value: 0 as Float)
             animation.duration = duration
             return animation
         }()
@@ -153,11 +153,11 @@ public extension RippleView {
         group.repeatCount = Float.infinity
         group.duration = duration
         
-        ringLayer.addAnimation(group, forKey: "ring_animation")
+        ringLayer.add(group, forKey: "ring_animation")
     }
     
     public func restartAnimation() {
-        if ringLayer.animationKeys()?.count <= 0 {
+        if let animationCount = ringLayer.animationKeys()?.count, animationCount <= 0 {
             return
         }
         startAnimation()
@@ -167,20 +167,20 @@ public extension RippleView {
 // MARK: Appear and Disappear
 
 public extension RippleView {
-    public func appearAtView(view: UIView, offset: CGPoint = CGPointZero) {
+    public func appearAtView(_ view: UIView, offset: CGPoint = CGPoint.zero) {
         appearInView(view.superview, point: view.center + offset)
     }
     
-    public func appearAtBarButtonItem(buttonItem: UIBarButtonItem, offset: CGPoint = CGPointZero) {
-        guard let unmanagedView = buttonItem.performSelector(Selector("view")),
+    public func appearAtBarButtonItem(_ buttonItem: UIBarButtonItem, offset: CGPoint = CGPoint.zero) {
+        guard let unmanagedView = buttonItem.perform(#selector(getter: UITouch.view)),
             let view = unmanagedView.takeUnretainedValue() as? UIView else {
                 return
         }
         appearAtView(view, offset: offset)
     }
     
-    public func appearInView(view: UIView?, point: CGPoint) {
-        bounds = CGRect(origin: CGPointZero, size: size)
+    public func appearInView(_ view: UIView?, point: CGPoint) {
+        bounds = CGRect(origin: CGPoint.zero, size: size)
         center = point
         view?.addSubview(self)
         startAnimation()
@@ -196,11 +196,11 @@ public extension RippleView {
 }
 
 extension RippleView: UIGestureRecognizerDelegate {
-    func viewTapped(gesture: UITapGestureRecognizer) {
+    func viewTapped(_ gesture: UITapGestureRecognizer) {
         delegate?.rippleViewTapped(self)
     }
 }
 
 func +(l: CGPoint, r: CGPoint) -> CGPoint {
-    return CGPointMake(l.x + r.x, l.y + r.y)
+    return CGPoint(x: l.x + r.x, y: l.y + r.y)
 }
